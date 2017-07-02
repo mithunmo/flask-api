@@ -3,6 +3,6 @@ applications:
 - name: nhc-tool
   memory: 512M 
   instances: 1
-  buildpack: https://github.com/cloudfoundry/cf-buildpack-python.git
+  buildpack: python_buildpack
   services:
   - webportal-db

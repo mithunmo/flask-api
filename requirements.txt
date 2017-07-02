@@ -12,7 +12,8 @@ itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
 #pip==9.0.1
-PyMySQL==0.7.11
+#PyMySQL==0.7.11
+MySQL-python
 robotframework==3.0.2
 #setuptools==36.0.1
 six==1.10.0

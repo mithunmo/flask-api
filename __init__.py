@@ -46,6 +46,7 @@ def create_app(configfile=None):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/nhc'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://b036b0fbeb78f5:6352c20c@us-cdbr-iron-east-03.cleardb.net:3306/ad_234562919f9ba73'
     #engine = create_engine('mysql://b036b0fbeb78f5:6352c20c@us-cdbr-iron-east-03.cleardb.net:3306/ad_234562919f9ba73', echo=True)
     app.config['WTF_CSRF_ENABLED'] = False
 
