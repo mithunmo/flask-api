@@ -1,0 +1,33 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+   <div class="container">
+      <div class="jumbotron">
+        <h1>Create a package</h1>
+      </div>
+   <div class="col-md-12">
+      <form action="/create-packages/" method="POST">
+  <div class="form-group required">
+      {{ form.csrf_token }}
+
+      {{ form.name.label }}
+      {{ form.name(class_="form-control") }}
+
+      {{ form.descname.label }}
+      {{ form.descname(class_="form-control") }}
+
+      <label> Select Feature </label>
+      <select name="feature" multiple class="form-control">
+        {% for item in feature %}
+        <option  value="{{ item.name }}">{{ item.name }}</option>
+        {% endfor %}
+         </select>
+
+</div>
+<button class="btn btn-default" type="submit">Save</button>
+</form>
+</div>
+{%- endblock %}

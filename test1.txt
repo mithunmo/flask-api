@@ -1,0 +1,31 @@
+*** Settings ***
+Library       OperatingSystem
+
+*** Variables ***
+${MESSAGE}    http://172.20.248.4:58080/centralized-management/
+${id}   10
+*** Test Cases ***
+My Test
+    [Documentation]    Example test
+    Log    ${MESSAGE}
+    MyKeyword    /Users/mohanm/robot/tmp
+
+Another Test
+    Should Be Equal    ${MESSAGE}    http://172.20.248.4:58080/centralized-management/
+    Should be Equal    ${id}   10
+test1
+
+Valid Login
+    Open Login Page
+    Input Username    demo
+    Input Password    mode
+    Submit Credentials
+    Welcome Page Should Be Open
+
+*** Keywords ***
+MyKeyword
+    [Arguments]    ${path}
+    Directory Should Exist    ${path}
+Open Login Page
+    Open Browser    http://host/login.html
+    Title Should Be    Login Page

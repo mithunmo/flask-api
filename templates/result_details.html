@@ -1,0 +1,38 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+   <div class="container">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Package</th>        
+        <th>Testcase</th>
+        <th>Status</th>
+        <th>Log</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in resultDetails %}
+
+      <tr>
+        <td>{{ item.package.name }}</td>        
+        <td>{{ item.testcaseID }}</td>
+        {% if item.status == 0 %}
+        <td style="color:green"><strong>  PASS </strong> </td>
+          {% else %}
+         <td style="color:red">  <strong> FAIL </strong></td>
+           {% endif %}  
+        </td>
+        <td>{{item.log }}</td>
+        <td>{{item.executed }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{%- endblock %}

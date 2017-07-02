@@ -1,0 +1,36 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+   <div class="container">
+  <div class="panel panel-default">   
+  <div class="panel-heading">Package Results </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Package</th>
+        <th>Total</th>
+        <th>Pass</th>
+        <th>Fail</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in result %}
+
+      <tr>
+        <td><a href="/result-details?rid={{item.id}}"> {{ item.id }} </a></td>
+        <td> <a href="/result-details?rid={{item.id}}">{{ item.package.name }} </a></td>
+        <td>{{item.total }}</td>
+        <td>{{item.passes }}</td>
+        <td>{{item.fail }}</td>
+        <td>{{item.executed }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{%- endblock %}

@@ -1,0 +1,29 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+   <div class="container">
+  <div class="panel panel-default">   
+  <div class="panel-heading">List of Features</div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Feature Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in feature %}
+
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{%- endblock %}
