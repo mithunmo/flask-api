@@ -15,7 +15,10 @@
         <th>Total</th>
         <th>Pass</th>
         <th>Fail</th>
+        <th>Error</th>
+        <th>Status</th>
         <th>Date</th>
+        <th>Duration</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +30,11 @@
         <td>{{item.total }}</td>
         <td>{{item.passes }}</td>
         <td>{{item.fail }}</td>
+        <td>{{item.error }}</td>
+        <td>{{item.status }}</td>
         <td>{{item.executed }}</td>
+        <td>{{item.duration | truncate(7,False,'')}}</td>
+
       </tr>
       {% endfor %}
     </tbody>

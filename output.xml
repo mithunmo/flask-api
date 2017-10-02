@@ -1,38 +1,260 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20170701 19:03:38.234" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
-<suite source="C:\Users\mohanm\pcf\nhc_tool\test1.txt" id="s1" name="Test1">
-<test id="s1-t1" name="Another Test">
-<kw name="Should Be Equal" library="BuiltIn">
-<doc>Fails if the given objects are unequal.</doc>
+<robot generated="20170723 12:14:26.829" generator="Robot 3.0.2 (Python 2.7.11 on win32)">
+<suite source="C:\Users\mmohan\pcf\nhc-tool\nhc_automation\GUI\TestCases\NHC-SIT-Alerts_AQP_NHC-4050.txt" id="s1" name="NHC-SIT-Alerts AQP NHC-4050">
+<test id="s1-t1" name="NHCQA-168_Verify_CPU_critical_alert_notification">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
 <arguments>
-<arg>${MESSAGE}</arg>
-<arg>http://172.20.248.4:58080/centralized-management/</arg>
+<arg>SSH.PCFvmLogin GetUtilization</arg>
+<arg>${pcf_ip}</arg>
+<arg>${opdirector_ip}</arg>
+<arg>${opdirector_password}</arg>
+<arg>cloud_controller_worker</arg>
+<arg>CPU utilization</arg>
 </arguments>
-<status status="PASS" endtime="20170701 19:03:38.334" starttime="20170701 19:03:38.334"></status>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<doc>Fails if the given objects are unequal.</doc>
+<assign>
+<var>${utilization}</var>
+</assign>
+<kw name="PCFvmLogin GetUtilization" library="SSH">
+<doc>This method will execute bosh vms --vitals command and get the </doc>
 <arguments>
-<arg>${id}</arg>
+<arg>${pcf_ip}</arg>
+<arg>${opdirector_ip}</arg>
+<arg>${opdirector_password}</arg>
+<arg>cloud_controller_worker</arg>
+<arg>CPU utilization</arg>
+</arguments>
+<msg timestamp="20170723 12:14:30.484" level="INFO">Login to Ops manager CLI...</msg>
+<msg timestamp="20170723 12:14:30.793" level="INFO">SSH Sucess &lt;paramiko.client.SSHClient object at 0x032D6BF0&gt;</msg>
+<msg timestamp="20170723 12:14:30.794" level="INFO">Successfully logged into 172.20.250.4</msg>
+<msg timestamp="20170723 12:14:31.294" level="INFO">Executing bosh login from Ops manager CLI...</msg>
+<msg timestamp="20170723 12:14:31.312" level="INFO">Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-81-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+Last login: Sun Jul 23 06:38:33 UTC 2017 from 172.20.240.73 on pts/4
+Last login: Sun Jul 23 06:44:30 2017 from 172.20.240.73
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:32.051" level="INFO">bosh --ca-cert /var/tempest/workspaces/default/root_ca_c ertificate target 172.20.250.10
+Target set to '[0m[32mp-bosh[0m'
+Email: </msg>
+<msg timestamp="20170723 12:14:32.051" level="INFO">Email: prompt found, provide ops director user</msg>
+<msg timestamp="20170723 12:14:32.054" level="INFO">admin
+Password: </msg>
+<msg timestamp="20170723 12:14:32.055" level="INFO">Password: prompt found, provide ops director password</msg>
+<msg timestamp="20170723 12:14:32.198" level="INFO">
+[0m[31mFailed to log in: Bad credentials[0m
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:32.745" level="INFO">bosh login
+RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+Email: </msg>
+<msg timestamp="20170723 12:14:32.746" level="INFO">Email: prompt found, provide ops director user</msg>
+<msg timestamp="20170723 12:14:32.748" level="INFO">admin
+Password: </msg>
+<msg timestamp="20170723 12:14:32.749" level="INFO">Password: prompt found, provide ops director password</msg>
+<msg timestamp="20170723 12:14:32.806" level="INFO">
+[0m[31mFailed to log in: Your account has been locked because of too many failed attempts to login.[0m
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:32.807" level="INFO">Executing bosh vms --vitals | grep cloud_controller_worker | awk '{print $19}' command on bosh CLI</msg>
+<msg timestamp="20170723 12:14:32.808" level="INFO">ssh channel available</msg>
+<msg timestamp="20170723 12:14:37.809" level="INFO">bosh vms --vitals | grep cloud_controller_worker | awk ' {print $19}'
+Please log in firstubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:37.810" level="INFO">after bosh login</msg>
+<msg timestamp="20170723 12:14:37.813" level="FAIL">IndexError: list index out of range</msg>
+<status status="FAIL" endtime="20170723 12:14:37.813" starttime="20170723 12:14:30.466"></status>
+</kw>
+<msg timestamp="20170723 12:14:37.813" level="INFO">${utilization} = None</msg>
+<status status="FAIL" endtime="20170723 12:14:37.813" starttime="20170723 12:14:30.465"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${utilization}</arg>
+</arguments>
+<msg timestamp="20170723 12:14:37.815" level="INFO">None</msg>
+<status status="PASS" endtime="20170723 12:14:37.816" starttime="20170723 12:14:37.814"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>CLI_ALERTS_UTILS.Stress CPU Component</arg>
+<arg>${cloudControllerWorker_IP}</arg>
+<arg>${pcfVM_user}</arg>
+<arg>${cloudControllerWorker_pwd}</arg>
+<arg>1</arg>
+</arguments>
+<assign>
+<var>${connection}</var>
+</assign>
+<kw name="Stress CPU Component" library="CLI_ALERTS_UTILS">
+<doc>This method will stress the CPU component of the pcf vm by allocating memory blocks</doc>
+<arguments>
+<arg>${cloudControllerWorker_IP}</arg>
+<arg>${pcfVM_user}</arg>
+<arg>${cloudControllerWorker_pwd}</arg>
+<arg>1</arg>
+</arguments>
+<msg timestamp="20170723 12:14:37.821" level="WARN">Running: run.py -t NHCQA-168_Verify_CPU_critical_alert_notification nhc_automation\GUI\TestCases\NHC-SIT-Alerts_AQP_NHC-4050.txt</msg>
+<msg timestamp="20170723 12:14:37.827" level="INFO">test</msg>
+<msg timestamp="20170723 12:14:40.530" level="INFO">2017-07-23 12:14:37,819 - NHC - WARNING - Running: run.py -t NHCQA-168_Verify_CPU_critical_alert_notification nhc_automation\GUI\TestCases\NHC-SIT-Alerts_AQP_NHC-4050.txt
+2017-07-23 12:14:37,825 - NHC - INFO - test</msg>
+<msg timestamp="20170723 12:14:40.539" level="FAIL">AuthenticationException: Authentication failed.</msg>
+<status status="FAIL" endtime="20170723 12:14:40.539" starttime="20170723 12:14:37.817"></status>
+</kw>
+<msg timestamp="20170723 12:14:40.539" level="INFO">${connection} = None</msg>
+<status status="FAIL" endtime="20170723 12:14:40.539" starttime="20170723 12:14:37.816"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
 <arg>10</arg>
 </arguments>
-<status status="PASS" endtime="20170701 19:03:38.338" starttime="20170701 19:03:38.334"></status>
+<msg timestamp="20170723 12:14:50.541" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" endtime="20170723 12:14:50.541" starttime="20170723 12:14:40.540"></status>
 </kw>
-<status status="PASS" endtime="20170701 19:03:38.338" critical="yes" starttime="20170701 19:03:38.330"></status>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>SSH.PCFvmLogin GetUtilization</arg>
+<arg>${pcf_ip}</arg>
+<arg>${opdirector_ip}</arg>
+<arg>${opdirector_password}</arg>
+<arg>cloud_controller_worker</arg>
+<arg>CPU utilization</arg>
+</arguments>
+<assign>
+<var>${utiliz_afterStressed}</var>
+</assign>
+<kw name="PCFvmLogin GetUtilization" library="SSH">
+<doc>This method will execute bosh vms --vitals command and get the </doc>
+<arguments>
+<arg>${pcf_ip}</arg>
+<arg>${opdirector_ip}</arg>
+<arg>${opdirector_password}</arg>
+<arg>cloud_controller_worker</arg>
+<arg>CPU utilization</arg>
+</arguments>
+<msg timestamp="20170723 12:14:50.545" level="INFO">Login to Ops manager CLI...</msg>
+<msg timestamp="20170723 12:14:50.743" level="INFO">SSH Sucess &lt;paramiko.client.SSHClient object at 0x03BC9650&gt;</msg>
+<msg timestamp="20170723 12:14:50.744" level="INFO">Successfully logged into 172.20.250.4</msg>
+<msg timestamp="20170723 12:14:51.246" level="INFO">Executing bosh login from Ops manager CLI...</msg>
+<msg timestamp="20170723 12:14:51.261" level="INFO">Last login: Sun Jul 23 06:44:50 2017 from 172.20.240.73
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:51.907" level="INFO">bosh --ca-cert /var/tempest/workspaces/default/root_ca_c ertificate target 172.20.250.10
+Target set to '[0m[32mp-bosh[0m'
+Email: </msg>
+<msg timestamp="20170723 12:14:51.908" level="INFO">Email: prompt found, provide ops director user</msg>
+<msg timestamp="20170723 12:14:51.911" level="INFO">admin
+Password: </msg>
+<msg timestamp="20170723 12:14:51.912" level="INFO">Password: prompt found, provide ops director password</msg>
+<msg timestamp="20170723 12:14:51.955" level="INFO">
+[0m[31mFailed to log in: Your account has been locked because of too many failed attempts to login.[0m
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:52.517" level="INFO">bosh login
+RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+Email: </msg>
+<msg timestamp="20170723 12:14:52.518" level="INFO">Email: prompt found, provide ops director user</msg>
+<msg timestamp="20170723 12:14:52.521" level="INFO">admin
+Password: </msg>
+<msg timestamp="20170723 12:14:52.521" level="INFO">Password: prompt found, provide ops director password</msg>
+<msg timestamp="20170723 12:14:52.571" level="INFO">
+[0m[31mFailed to log in: Your account has been locked because of too many failed attempts to login.[0m
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:52.584" level="INFO">Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-81-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+Last login: Sun Jul 23 06:44:31 UTC 2017 from 172.20.240.73 on pts/4
+Last login: Sun Jul 23 06:44:51 2017 from 172.20.240.73
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:53.228" level="INFO">bosh --ca-cert /var/tempest/workspaces/default/root_ca_c ertificate target 172.20.250.10
+Target set to '[0m[32mp-bosh[0m'
+Email: </msg>
+<msg timestamp="20170723 12:14:53.229" level="INFO">Email: prompt found, provide ops director user</msg>
+<msg timestamp="20170723 12:14:53.231" level="INFO">admin
+Password: </msg>
+<msg timestamp="20170723 12:14:53.232" level="INFO">Password: prompt found, provide ops director password</msg>
+<msg timestamp="20170723 12:14:53.274" level="INFO">
+[0m[31mFailed to log in: Your account has been locked because of too many failed attempts to login.[0m
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:53.799" level="INFO">bosh login
+RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+Email: </msg>
+<msg timestamp="20170723 12:14:53.800" level="INFO">Email: prompt found, provide ops director user</msg>
+<msg timestamp="20170723 12:14:53.802" level="INFO">admin
+Password: </msg>
+<msg timestamp="20170723 12:14:53.803" level="INFO">Password: prompt found, provide ops director password</msg>
+<msg timestamp="20170723 12:14:53.845" level="INFO">
+[0m[31mFailed to log in: Your account has been locked because of too many failed attempts to login.[0m
+ubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:53.846" level="INFO">Executing bosh vms --vitals | grep cloud_controller_worker | awk '{print $19}' command on bosh CLI</msg>
+<msg timestamp="20170723 12:14:53.847" level="INFO">ssh channel available</msg>
+<msg timestamp="20170723 12:14:58.850" level="INFO">bosh vms --vitals | grep cloud_controller_worker | awk ' {print $19}'
+Please log in firstubuntu@bosh-stemcell:~$ </msg>
+<msg timestamp="20170723 12:14:58.850" level="INFO">after bosh login
+after bosh login</msg>
+<msg timestamp="20170723 12:14:58.851" level="FAIL">IndexError: list index out of range</msg>
+<status status="FAIL" endtime="20170723 12:14:58.851" starttime="20170723 12:14:50.543"></status>
+</kw>
+<msg timestamp="20170723 12:14:58.852" level="INFO">${utiliz_afterStressed} = None</msg>
+<status status="FAIL" endtime="20170723 12:14:58.852" starttime="20170723 12:14:50.542"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${utiliz_afterStressed}</arg>
+</arguments>
+<msg timestamp="20170723 12:14:58.854" level="INFO">None</msg>
+<status status="PASS" endtime="20170723 12:14:58.854" starttime="20170723 12:14:58.853"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Now wait 5 minutes for alerts to generate</arg>
+</arguments>
+<msg timestamp="20170723 12:14:58.855" level="INFO">Now wait 5 minutes for alerts to generate</msg>
+<status status="PASS" endtime="20170723 12:14:58.855" starttime="20170723 12:14:58.855"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>300</arg>
+</arguments>
+<status status="FAIL" endtime="20170723 12:15:48.251" starttime="20170723 12:14:58.856"></status>
+</kw>
+<tags>
+<tag>Charlie</tag>
+<tag>NHCQA-168</tag>
+</tags>
+<status status="FAIL" endtime="20170723 12:15:48.252" critical="yes" starttime="20170723 12:14:30.463">Several failures occurred:
+
+1) IndexError: list index out of range
+
+2) AuthenticationException: Authentication failed.
+
+3) IndexError: list index out of range
+
+4) Execution terminated by signal</status>
 </test>
-<status status="PASS" endtime="20170701 19:03:38.346" starttime="20170701 19:03:38.238"></status>
+<doc>Author: Ramkumar Kunjan
+Title: Test Suite for NHC Alerts</doc>
+<status status="FAIL" endtime="20170723 12:15:48.267" starttime="20170723 12:14:26.833"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="1">Critical Tests</stat>
-<stat fail="0" pass="1">All Tests</stat>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
 </total>
 <tag>
+<stat fail="1" pass="0">Charlie</stat>
+<stat fail="1" pass="0">NHCQA-168</stat>
 </tag>
 <suite>
-<stat fail="0" id="s1" name="Test1" pass="1">Test1</stat>
+<stat fail="1" id="s1" name="NHC-SIT-Alerts AQP NHC-4050" pass="0">NHC-SIT-Alerts AQP NHC-4050</stat>
 </suite>
 </statistics>
 <errors>
+<msg timestamp="20170723 12:14:29.877" level="WARN">Running: run.py -t NHCQA-168_Verify_CPU_critical_alert_notification nhc_automation\GUI\TestCases\NHC-SIT-Alerts_AQP_NHC-4050.txt</msg>
+<msg timestamp="20170723 12:14:30.399" level="WARN">Running: run.py -t NHCQA-168_Verify_CPU_critical_alert_notification nhc_automation\GUI\TestCases\NHC-SIT-Alerts_AQP_NHC-4050.txt</msg>
+<msg timestamp="20170723 12:14:30.470" level="WARN">Running: run.py -t NHCQA-168_Verify_CPU_critical_alert_notification nhc_automation\GUI\TestCases\NHC-SIT-Alerts_AQP_NHC-4050.txt</msg>
+<msg timestamp="20170723 12:14:37.821" level="WARN">Running: run.py -t NHCQA-168_Verify_CPU_critical_alert_notification nhc_automation\GUI\TestCases\NHC-SIT-Alerts_AQP_NHC-4050.txt</msg>
 </errors>
 </robot>

@@ -1,0 +1,77 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+   <div class="container">
+      <div class="jumbotron">
+        <h1>Create a config file</h1>
+      </div>
+   <div class="col-md-12">
+      <form action="/config/" method="POST">
+  <div class="form-group">
+    <label for="email"> Name</label>
+    <input name="name" type="text" class="form-control" id="email">
+  </div>
+
+  <div class="form-group">
+    <label for="email"> Mnr IP </label>
+    <input name="mnrip" type="text" class="form-control" id="email">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Installer IP</label>
+    <input name="instip" type="text" class="form-control" id="pwd">
+  </div>
+  <div class="form-group">
+    <label for="pwd">PCF IP</label>
+    <input name="pcfip" type="text" class="form-control" id="pwd">
+  </div>
+  <div class="form-group">
+    <label for="pwd">PCF Web username</label>
+    <input name="pcfuname" type="text" class="form-control" id="pwd">
+  </div>
+  <div class="form-group">
+    <label for="pwd">PCF Web password</label>
+    <input name="pcfpass" type="text" class="form-control" id="pwd">
+  </div>
+ <div class="form-group">
+    <label for="pwd">OPS Director IP</label>
+    <input name="opsip" type="text" class="form-control" id="pwd">
+  </div>
+ <div class="form-group">
+    <label for="pwd">Ops Director UAA admin credentials</label>
+    <input name="opspass" type="text" class="form-control" id="pwd">
+  </div> 
+<div class="form-group">
+    <label for="pwd">System Domain</label>
+    <input name="appsdomain" type="text" class="form-control" id="pwd">
+  </div>
+<div class="form-group">
+    <label for="pwd">Apps Manager Password</label>
+    <input name="appspass" type="text" class="form-control" id="pwd">
+  </div>
+
+<div class="form-group">
+    <label for="pwd">Private key</label>
+    <textarea  class="form-control" name="key">
+    </textarea>
+  </div>
+<div class="form-group">
+    <label for="pwd">Vcenter IP</label>
+    <input name="vcenterip" type="text" class="form-control" id="pwd">
+  </div>
+<div class="form-group">
+    <label for="pwd">Vcenter Username</label>
+    <input name="vcenteruname" type="text" class="form-control" id="pwd">
+  </div>
+<div class="form-group">
+    <label for="pwd">Vcenter Password</label>
+    <input name="vcenterpass" type="text" class="form-control" id="pwd">
+  </div>
+
+  <button type="submit" class="btn btn-default">Submit</button>
+
+  </form>
+</div>
+{%- endblock %}

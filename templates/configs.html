@@ -1,0 +1,39 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+   <div class="container">
+  <div class="panel panel-default">   
+  <div class="panel-heading">Configs</div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>MnR IP</th>  
+        <th>Inst IP</th>  
+         <th>PCF IP</th>  
+         <th>Ops DIRCTR IP</th>  
+         <th>Ops Director UAA admin credentials</th>  
+        <th>Apps Manager password</th>  
+  
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in config %}
+      <tr>
+        <td><a href="/config-details?cid={{item.id}}" >{{ item.name }}</a></td>
+        <td> {{ item.mnrIP }}</td> 
+        <td> {{ item.instIP }}</td> 
+        <td> {{ item.pcfIP }}</td> 
+        <td> {{ item.opsDirectorIP }}</td> 
+        <td> {{ item.opsDirectorPassword }}</td> 
+        <td> {{ item.appsManagerPassword }} </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{%- endblock %}

@@ -28,7 +28,7 @@
          <td style="color:red">  <strong> FAIL </strong></td>
            {% endif %}  
         </td>
-        <td>{{item.log }}</td>
+        <td><a href="/log?id={{item.id}}">Logs</a></td>
         <td>{{item.executed }}</td>
       </tr>
       {% endfor %}

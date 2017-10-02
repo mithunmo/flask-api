@@ -1,0 +1,73 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+   <div class="container">
+      <div class="jumbotron">
+        <h1>View config file {{ configDetails.name}}</h1>
+      </div>
+   <div class="col-md-12">
+      <form action="/config-details/" method="POST">
+   <input name="id" type="hidden" class="form-control" id="email" value="{{configDetails.id}}">    
+  <div class="form-group">
+    <label for="email"> Mnr IP </label>
+    <input name="mnrip" type="text" class="form-control" id="email" value="{{configDetails.mnrIP}}">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Installer IP</label>
+    <input name="instip" type="text" class="form-control" id="pwd" value="{{configDetails.instIP}}">
+  </div>
+  <div class="form-group">
+    <label for="pwd">PCF IP</label>
+    <input name="pcfip" type="text" class="form-control" id="pwd" value="{{configDetails.pcfIP}}">
+  </div>
+  <div class="form-group">
+    <label for="pwd">PCF Web username</label>
+    <input name="pcfuname" type="text" class="form-control" id="pwd" value="{{configDetails.pcfUsername}}">
+  </div>
+  <div class="form-group">
+    <label for="pwd">PCF Web password</label>
+    <input name="pcfpass" type="text" class="form-control" id="pwd" value="{{configDetails.pcfPassword}}">
+  </div>
+ <div class="form-group">
+    <label for="pwd">OPS Director IP</label>
+    <input name="opsip" type="text" class="form-control" id="pwd" value="{{configDetails.opsDirectorIP}}">
+  </div>
+ <div class="form-group">
+    <label for="pwd">Ops Director UAA admin credentials</label>
+    <input name="opspass" type="text" class="form-control" id="pwd" value="{{configDetails.opsDirectorPassword}}">
+  </div> 
+<div class="form-group">
+    <label for="pwd">System Domain</label>
+    <input name="appsdomain" type="text" class="form-control" id="pwd" value="{{configDetails.appsDomain}}">
+  </div>
+<div class="form-group">
+    <label for="pwd">Apps Manager Password</label>
+    <input name="appspass" type="text" class="form-control" id="pwd" value="{{configDetails.appsManagerPassword}}">
+  </div>
+
+<div class="form-group">
+    <label for="pwd">Private key</label>
+    <textarea  class="form-control" name="key">{{configDetails.privateKey}}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Vcenter IP</label>
+    <input name="vcenterip" type="text" class="form-control" id="pwd">
+  </div>
+<div class="form-group">
+    <label for="pwd">Vcenter Username</label>
+    <input name="vcenteruname" type="text" class="form-control" id="pwd">
+  </div>
+<div class="form-group">
+    <label for="pwd">Vcenter Password</label>
+    <input name="vcenterpass" type="text" class="form-control" id="pwd">
+  </div>
+
+
+  <button type="submit" class="btn btn-default">Save</button>
+
+  </form>
+</div>
+{%- endblock %}

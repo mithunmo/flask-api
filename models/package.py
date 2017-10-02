@@ -5,10 +5,12 @@ class Package(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     description = db.Column(db.String(100))
+    configID = db.Column(db.Integer)
 
-    def __init__(self, name, description):
+    def __init__(self, name, description, configID):
         self.name = name
         self.description = description
+        self.configID = configID
 
     def __repr__(self):
         return '<User %r>' % self.name
