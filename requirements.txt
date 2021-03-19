@@ -9,7 +9,7 @@ Flask-SQLAlchemy==2.2
 Flask-WTF==0.14.2
 inflection==0.3.1
 itsdangerous==0.24
-Jinja2==2.9.6
+Jinja2==2.11.3
 MarkupSafe==1.0
 #pip==9.0.1
 #PyMySQL==0.7.11
