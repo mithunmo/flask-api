@@ -49,6 +49,6 @@ robotframework-selenium2library==1.8.0
 s3transfer==0.1.10
 selenium==3.4.3
 six==1.10.0
-urllib3==1.21.1
+urllib3==1.26.5
 xlrd==1.0.0
 robotframework-sshlibrary==2.1.3
